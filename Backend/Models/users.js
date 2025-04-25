@@ -1,11 +1,39 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
-  mobile: String,
-  otp: String,
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  username: {
+    type: String,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true,
+  },
+  mobileNumber: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  otp: {
+    type: String, // Usually store OTP as a string
+    required: false, // Only needed during signup/login, not after registration
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  }
 });
 
-module.exports = mongoose.model("User", userSchema);
+export default mongoose.model('User', userSchema);
