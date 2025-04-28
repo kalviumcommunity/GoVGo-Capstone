@@ -67,4 +67,15 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// ✅ Get All Users
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.find({}, '-password -otp'); // Exclude sensitive fields
+    res.json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error.message);
+    res.status(500).json({ error: 'Error fetching users' });
+  }
+});
+
 module.exports = router;
