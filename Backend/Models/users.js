@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -27,8 +27,8 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   otp: {
-    type: String, // Usually store OTP as a string
-    required: false, // Only needed during signup/login, not after registration
+    type: String,
+    required: false,
   },
   createdAt: {
     type: Date,
@@ -36,4 +36,5 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-export default mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);
+
