@@ -1,10 +1,10 @@
-const User = require("../Models/users");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import User from "../Models/users.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   try {
     const { name, email, password, mobile, otp } = req.body;
     const existing = await User.findOne({ email });
@@ -19,7 +19,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.signin = async (req, res) => {
+export const signin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
